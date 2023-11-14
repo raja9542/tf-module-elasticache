@@ -1,3 +1,3 @@
-data "aws_kms_key" "roboshop" {  // roboshop is a alias name given in key management service
+data "aws_kms_key" "key" {
   key_id = "alias/roboshop"
 }
