@@ -34,15 +34,6 @@ resource "aws_security_group" "elasticache" {
   )
 }
 
-resource "aws_elasticache_cluster" "elasticache" {
-  cluster_id           = "${var.env}-elasticache"
-  engine               = "redis"
-  node_type            = "cache.m4.large"
-  num_cache_nodes      = 1
-  parameter_group_name = "default.redis3.2"
-  engine_version       = "3.2.10"
-  port                 = 6379
-}
 
 resource "aws_elasticache_replication_group" "elasticache" {
   replication_group_id       = "${var.env}-elasticache" // any name we can give
