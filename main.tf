@@ -54,5 +54,6 @@ resource "aws_elasticache_cluster" "elasticache" {
 
 # to get endpoint details and storing in parameter store
 output "redis" {
-  value = aws_elasticache_cluster.elasticache
+  value = aws_elasticache_cluster.elasticache.cache_nodes[0].address
 }
+
