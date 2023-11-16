@@ -52,8 +52,26 @@ resource "aws_elasticache_cluster" "elasticache" {
 
 }
 
+resource "aws_ssm_parameter" "elasticache_endpoint" {
+  name  = "${var.env}.elasticache.ENDPOINT"
+  type  = "String"
+  value = aws_elasticache_cluster.elasticache.cache_nodes[0].address
+}
+
+
 # to get endpoint details and storing in parameter store
 output "redis" {
   value = aws_elasticache_cluster.elasticache.cache_nodes[0].address
 }
 
+
+# if we send above output we can get redis endpoint
+#1. output "redis" {
+#value = aws_elasticache_cluster.elasticache.cache_nodes[0].address
+#}
+
+#redis = {
+#  "main" = {
+#    "redis" = "dev-elasticache.ea5ont.0001.use1.cache.amazonaws.com"
+#  }
+#}
